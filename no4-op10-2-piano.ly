@@ -72,10 +72,10 @@ rightHand = {
     <gis' e''-5>-. <e'-1 a'>-. <gis' e''-5>-.
     <dis'-1 b'>-. <ais' dis''-5>-. <dis'-1 a'>-.
   }
-  <gis'-1 e''-5>4--
-  << {\omit TupletNumber \tuplet 3/2 { e'8 fis'-. gis'-. }} \\ { e'4-- } >>
+  <gis'-1 e''-5>4-- \caesura
+  << {\omit TupletNumber \tuplet 3/2 { e'8 fis'-. gis'-. }} \\ { e'4---1 } >>
   |
-  <<{\omit TupletNumber\tuplet 3/2 { c''8-. <g' d''>-. <f' dis''>-. } } \\ { a'4-- } >>
+  <<{\omit TupletNumber\tuplet 3/2 { c''8-. <g'-1 d''>-. <f'-1 dis''>-. } } \\ { a'4-- } >>
 
   \tuplet 3/2 {
     <e' e''>8-. <c'' fis''>-. <b' gis''>-.
@@ -263,11 +263,11 @@ rightHand = {
 
 
 lh_a = {
-\set Voice.hand = #'left
+\set Staff.hand = #'left
 \voiceThree
   \clef "bass"\global
-  a16 ais b c' cis' d' dis' e' \clef "treble" f' fis' g' gis' a' ais' b' c''| % bar 1
-  cis'' d'' dis'' e'' f'' e'' dis'' d'' cis'' c'' b' bes' a' gis' b' a'| % bar 2
+  a16-1 ais b c'-1 cis' d'-1 dis' e' \clef "treble" f'-1 fis' g'-1 gis' a'-1 ais' b' c''-1| % bar 1
+  cis'' d''-1 dis'' e'' f''-1 e'' dis'' d''-1 cis'' c''-1 b' bes' a'-1 gis' b'-1 a'| % bar 2
   gis' g' fis' f' e' dis' f' e' \clef "bass" dis' d' cis' c' b c' d' c'|
   b c' b c' b c' b c' b e' dis' d' cis' c' b bes|
   a16 ais b c' cis' d' dis' e' \clef "treble" f' fis' g' gis' a' ais' b' c''| % bar 5
@@ -329,10 +329,11 @@ lh_a = {
 }
 
 lh_b_a = {
+  \set Staff.hand = #'left
   \clef "bass" \global
   \multiRhythm {
-    a,4 <e a> <a d'> <d' f'>
-    <e' a'> <a' c''> <e' a'> <c' e'>
+    a,4-5 <e-5 a> <a-5 d'> <d'-5 f'>
+    <e'-5 a'> <a'-5 c''> <e'-5 a'> <c'-5 e'>
     <b e'>
   } gis( a) dis( |
   e) f (e )  s4 | % bar 4
@@ -444,8 +445,9 @@ lrhl_d = #(merge-n-voices-chords lrhl_b)
 %
 labRh = 
   \new Staff = "lab_rh"  \with {
-      fontSize = #-2
-      \override StaffSymbol.staff-space = #(magstep -2)
+      \magnifyStaff #3/5
+      %fontSize = #-3
+      \override StaffSymbol.staff-staff-spacing =  #'((basic-distance . 2) (minimum-distance . 2) (padding . 1) (stretchability . 1))
       \override Stem.stencil = ##f
       \override Flag.stencil = ##f
       \override BarLine.stencil = ##f
@@ -454,14 +456,43 @@ labRh =
       \override Dots.stencil = ##f
       \override TupletBracket.stencil = ##f
       \override TupletNumber.stencil = ##f
+%      % This staff will NOT appear in MIDI
+%      %\consists "Staff_performer"
       \remove "Staff_performer"
       \consists #(make-performer)
       \autoBeamOff
-\override Staff.displayHand = #'right
+displayHand = #'right
     }
 <<
  {\global\slurUp \lrhu_d } \\ {\global\slurDown \lrhl_d }
 >>
+
+
+labanLeft = #(build-laban-hand 'left (list 5 1) (list lh_all))
+
+labLh = 
+  \new Staff = "lab_lh"  \with {
+      \magnifyStaff #3/5
+      %fontSize = #-3
+      \override StaffSymbol.staff-staff-spacing =  #'((basic-distance . 2) (minimum-distance . 2) (padding . 1) (stretchability . 1))
+      \override Stem.stencil = ##f
+      \override Flag.stencil = ##f
+      \override BarLine.stencil = ##f
+      \override SpanBar.stencil = ##f
+      \override TimeSignature.stencil = ##f
+      \override Dots.stencil = ##f
+      \override TupletBracket.stencil = ##f
+      \override TupletNumber.stencil = ##f
+%      % This staff will NOT appear in MIDI
+%      %\consists "Staff_performer"
+      \remove "Staff_performer"
+      \consists #(make-performer)
+      \autoBeamOff
+displayHand = #'left
+    }
+<< \new Voice = "lablhU" << {\global\clef "bass"\slurDown #(car labanLeft) } \\ {\global\slurUp #(cadr labanLeft) } >> >>
+
+#(write-display-music labanLeft "tmp-labanLeft.scm")
 
 etude-four-music = {
   \new PianoStaff = "piano" <<
@@ -492,6 +523,7 @@ etude-four-midi =
   <<
   \labRh
   \etude-four-music
+  \labLh
   >>
   \layout {
     \context {

@@ -1,11 +1,11 @@
-\version "2.27.2"
+\version "2.27.4"
 \language "nederlands"
 #(ly:set-option 'compile-scheme-code)
 #(debug-enable 'backtrace)
 ekmFont = "Mezza#"
-%\include "esmufl.ily"
 \include "a4_cover_page.ly"
 \include "articulate.ly"
+\include "color-voices.ily"
 %#(load-from-path "click-track-tools.scm")
 
 \paper {
@@ -58,10 +58,12 @@ etude-two-music = {
   \new PianoStaff = "piano" <<
     \new Staff = "up" { \global}
     \new Staff = "down" {
-      \global \clef "bass" <<
-        { \autoChange \rh_a } \\
-        { \autoChange \rh_b } \\
-        { \autoChange \rh_c }
+      \global \clef "bass" 
+%\voices 1,4,2 
+<<
+        { \voiceTwo \autoChange \rh_a } \\
+        { \voiceOne \autoChange \rh_b } \\
+        { \voiceFour \autoChange \rh_c }
       >>
     }
 

@@ -25,7 +25,11 @@
             ((music-is-of-type? p-music 'note-event)
 ;    (format #t "note test fired! inchord? ~a\n" p-in-chord)
                 (let* (
-                        (current-result (list (make-music 'NoteEvent 'pitch (ly:music-property  p-music 'pitch) 'duration (ly:make-duration 4))))
+                        (current-result (list (make-music 'NoteEvent
+                                                'pitch (ly:music-property  p-music 'pitch)
+                                                'duration (ly:make-duration 4)
+                                                'articulations  (ly:music-property p-music 'articulations '())
+                                                                                                )))
                         (child-result (structure-10-2-rhythm (cdr p-music-list) p-in-chord)))
                     (if (not p-in-chord)
                         (append current-result skip-item child-result)
