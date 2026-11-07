@@ -25,8 +25,9 @@ rh_a = {
   s8. des'8 c'16 s f'8 ees'16 s c''8 b'16 s8. c''8 bes'16 aes'4 s8. ees'4 s16 | % bar 3
   s8. ees'8 des'16 s ces''8 beses'16 s f''8 ees''16 s8 s4 des''8 ees' a16 bes des'8 ees16 e bes16. aes32-~ | % bar 4
   <aes des'>4 bes8 as16 s es'8 des'16 s bes'8 as'16 s es''8 des''16 s es'''16^> des'''8 s16 es'' des''8 s16 es' des'8 s16 | % bar 5
-s4 es'8 des'16 s as'8 ges'16 s es''8^> des''16 s s4 es'8 des'16 s as'8 g'16 s es''8^> des''16 s |
-
+  s4 es'8 des'16 s as'8 ges'16 s es''8^> des''16 s s4 es'8 des'16 s as'8 g'16 s es''8^> des''16 s | % bar 6
+  s4 es'8 des'16 s as'8 ges'16 s es''8 des''16 s s2. des'16 c'8.  | % bar 7
+  s4 f'8 es'16 s bes'8 as'16 s f''8 es''16 s
 }
 
 
@@ -40,6 +41,18 @@ rh_b = {
   bes,, bes, des ges ees' ges des' f' aes' des' ges' c'' ees'' ges' des'' ges'' bes,, bes, des g ees' g des' f' aes' des' g' c'' ees'' ges' des'' f'' | % bar 6
   aes,, aes, des aes ees' aes des' g' bes' des' aes' c'' ees'' aes' des'' g'' bes'' aes'' des'' c'' ees'' des'' aes' des' f' ees' bes aes des' c' ges aes, | % bar 7
   des, des ees aes f' aes ees' aes' bes' ees' aes' ees'' f'' aes' ees'' aes'' ees''' des''' f'' g' des' aes' ees'' des'' f' g bes aes des' f aes, a, | % bar 8
+  bes,, bes, f des' es' des' ges' bes f' c'' des' bes' ges'' bes' f'' des''' c''' ges'' as'' ges'' des'' es' c'' ges' a ges' bes des es' ges c bes, | % bar 9
+  a,, a, ges c' des' c' f' f e' des'' es' c'' f'' ges' es'' c''' f'' es'' as' des'' c'' es' f' es' ges es' d' e des' f bes, as, | % bar 10
+  ges,, ges, des bes c' bes f' c'' des' bes' ges'' bes' f'' c''' des'' bes'' f''' e''' bes'' c''' bes'' des'' e'' bes' des' e' c' f a c <e bes> ges, | % bar 11
+  f,, f, c bes c' bes f' c'' bes' f' c'' f'' bes'' c'' f'' c''' f''' c''' bes'' c'' a'' des'' c'' f' a' c' f a c f, f, f,, | % bar 12
+  bes,, bes, f ces' d' bes es' as' e' as' d'' f' ces as'' d'' bes' as' des' a des' bes es fes' des' g' bes' es' d' des' es fes es | % bar 13
+  as,, as, es as des' as es' ges' as' es' ges' des'' es'' as' des'' ges'' des'' ges' d' ges' es' as f' as' ges' c'' es' as bes as es as, | % bar 14
+  des, des as ces' ges' ces' e' beses' f' as' eses'' c'' des'' e'' f'' as'' ces''' es'' fes'' c'' des'' ces'' fes' des' aeses es' fes' c' des' ces' fes des | % bar 15
+  ges, ges des' fes' ces'' f' a' eses'' bes' des'' aeses'' f'' ges'' a'' bes'' des''' fes''' as'' beses'' f'' ges'' fes'' beses' ges' deses' as' beses' f' ges' fes' beses ges | % bar 16
+  ces, ces f ges beses d' es' ges' as' ces'' beses' fes' bes es' ces' ges ces f a d' es' f' as' a' d'' f'' es'' as' f' a' es' f | % bar 17
+  bes,, bes, f bes es' e' f' as' a' c'' bes' d' f' es' bes f bes, f d' es' e' f' a' bes' cis'' es'' d'' e' c'' bes' f' bes | % bar 18
+  
+  
 }
 
 rh_c = {
@@ -47,10 +60,11 @@ rh_c = {
   s16 des,4 s8. s4 * 6 | % bar 2
   ees,4 s1 s8 ees4 s4. | % bar 3
   aes,4 s2 beses'4_~ beses'8. bes'16 s4 ges'4 c'4 | % bar 4
-  s16 des,4 s8. s2 s1 |
-  bes,,4 s2. bes,,4 s2. |
-  as,,4 s2. s1 |
-  des,4 s2. s1 |
+  s16 des,4 s8. s2 s1 | % bar 5
+  bes,,4 s2. bes,,4 s2. | % bar 6
+  as,,4 s2. s1 | % bar 7
+  des,4 s2. s1 | % bar 8
+  
 }
 
 
@@ -61,9 +75,9 @@ etude-two-music = {
       \global \clef "bass" 
 %\voices 1,4,2 
 <<
-        { \voiceTwo \autoChange \rh_a } \\
-        { \voiceOne \autoChange \rh_b } \\
-        { \voiceFour \autoChange \rh_c }
+        { \voiceOne \autoChange \rh_a } \\
+        { \voiceTwo \autoChange \rh_b } \\
+        { \voiceThree \autoChange \rh_c }
       >>
     }
 
