@@ -1,29 +1,10 @@
-\version "2.27.2"
+\version "2.27.4"
 \language "nederlands"
 \include "dev-tools.ly"
-\include "laban-tools.ly"
-\include "laban-voice-merge.ly"
-#(load-from-path "laban-build.scm")
-
+#(load-from-path "laban-processing.scm")
 #(load-from-path "click-track-tools.scm")
 
-#(define (note-with-fingering? m)
-   (and (music-is-of-type? m 'note-event)
-        (let ((arts (ly:music-property m 'articulations)))
-          (and arts
-               (any
-                (lambda (a)
-                  (music-is-of-type? a 'fingering-event))
-                arts)))))
-
-#(define (context-specifying-hand? m)
-    (and (music-is-of-type? m 'context-specification) 
-          (music-is-of-type? (ly:music-property m 'element) 'layout-instruction-event)
-          (eq? (ly:music-property (ly:music-property m 'element) 'symbol) 'hand)))
-
 legatoMark = {
-  \once \override Score.RehearsalMark.outside-staff-priority = 900
-  \once \override Score.RehearsalMark.X-offset = 10
   \mark \markup \small \italic "legato"
 }
 
@@ -34,8 +15,8 @@ global = {
 }
 
 rightHand = {
-  \set Voice.hand = #'right
 \voiceOne
+  \set Voice.hand = #'right
   \clef treble
   \global
   \tempo "Allegro" 4 = 176
@@ -43,11 +24,11 @@ rightHand = {
   \change Staff="lower" \stemUp r16 c-1 g-2 c'-4 \change Staff="upper" \stemNeutral e'->-5
     c'-1 g'-2 c''-4  e''->-5 c''-1 g''-2 c'''-4  \ottava 1 e'''->-5 c'''-1 g'''-2 c''''-4 |
   e''''16->-5 c''''-4 g'''-2 c'''-1  \ottava 0 e'''->-5 c'''-4 g''-2 c''-1  e''->-5 c''-4 g'-2 c'-1  e'->-5 c'-4 \change Staff="lower" g-2 c-1 |
-  \stemUp r16 c-1 a-2 c'-3  \change Staff="upper" \stemNeutral f'-5 c'-1 a'-2 c''-3  f''-5 c''-1 a''-2 c'''-3 \ottava 1 f'''-5 c'''-1 a'''-2 c''''-3 |
+  \caesura \stemUp r16 c-1 a-2 c'-3  \change Staff="upper" \stemNeutral f'-5 c'-1 a'-2 c''-3  f''-5 c''-1 a''-2 c'''-3 \ottava 1 f'''-5 c'''-1 a'''-2 c''''-3 |
   e''''16-5 c''''-4 a'''-2 c'''-1  \ottava 0 e'''-5 c'''-4 a''-2 c''-1  e''-5 c''-4 a'-2 c'-1  e'-5 c'-4 \change Staff="lower" a-2 c-1 |
-  \stemUp r16 b,-1 g-2 b-4 \change Staff="upper" \stemNeutral d'-5 b-1 g'-2 b'-4  d''-5 b'-1 g''-2 b''-4 \ottava 1 d'''-5 b''-1 g'''-2 a'''-4 |
+  \caesura \stemUp r16 b,-1 g-2 b-4 \change Staff="upper" \stemNeutral d'-5 b-1 g'-2 b'-4  d''-5 b'-1 g''-2 b''-4 \ottava 1 d'''-5 b''-1 g'''-2 a'''-4 |
   d''''16-5 a'''-3 fis'''-2 c'''-1  \ottava 0 d'''-5 a''-3 fis''-2 c''-1  d''-5 a'-3 fis'-2 c'-1 \change Staff="lower" \stemUp d'-5 a-3 fis-2 c-1 |
-  r16 c-1 f-2 as-3  \change Staff="upper" \stemNeutral d'-5 c'-1 f'-2 as'-3  d''-5 c''-1 f''-2 as''-3  \ottava 1 d'''-5 c'''-1 f'''-2 as'''-3 |
+  \caesura r16 c-1 f-2 as-3  \change Staff="upper" \stemNeutral d'-5 c'-1 f'-2 as'-3  d''-5 c''-1 f''-2 as''-3  \ottava 1 d'''-5 c'''-1 f'''-2 as'''-3 |
   d''''16-5 g'''-3 f'''-2 b''-1  \ottava 0 d'''-5 g''-3 f''-2 b'-1  d''-5 g'-3 f'-2 b-1  \change Staff="lower" \stemUp dis'^> g-5 f-3 b,-2 | 
     
   \barNumberCheck 9
@@ -174,8 +155,8 @@ rightHand = {
 
 
 leftHand = {
-  \set Voice.hand = #'left
 \voiceTwo
+  \set Voice.hand = #'left
   \clef bass
   \global
   
@@ -414,17 +395,10 @@ etude-one-header = \header {
   tagline = \date
 }
 
-rhca = #(ly:music-deep-copy rightHand)
-lrhca = #(split-long-notes (my-transform-voice 'right 5 rhca ))
-lrha = #(merge-n-voices-chords lrhca)
-rhcb = #(ly:music-deep-copy rightHand)
-lrhcb = #(split-long-notes (my-transform-voice 'right 1 rhcb ))
-lrhb = #(merge-n-voices-chords lrhcb)
-rhcc = #(ly:music-deep-copy rightHand)
-lrhc = #(merge-n-voices-chords (split-long-notes (my-transform-voice 'right 4 rhcc )))
-lrhd = #(merge-n-voices-chords (split-long-notes (my-transform-voice 'right 2 (ly:music-deep-copy rightHand) )))
-lrhe = #(merge-n-voices-chords (split-long-notes (my-transform-voice 'right 3 (ly:music-deep-copy rightHand) )))
+labanRight = #(build-laban-hand 'right (list 5 4 3 2 1) (list rightHand))
 
+#(write-display-lily-music labanRight "tmp-labanRight.ly")
+#(write-display-music labanRight "tmp-labanRight.scm")
 labRh = 
   \new Staff = "lab_rh"  \with {
 %      %instrumentName = "lab_RH"
@@ -445,43 +419,12 @@ labRh =
       \autoBeamOff
 \override Staff.displayHand = #'right
     }
-<< {\global\slurUp \lrha } \\
-{\override NoteHead.color = cyan \override Slur.color = cyan \global\slurUp\lrhc } \\
-{\override NoteHead.color = red \override Slur.color = red \global\slurUp\lrhe } \\
-{\override NoteHead.color = green \override Slur.color = green \global\slurDown\lrhd } \\
- {\global\slurDown \lrhb } >>
+<< {\global\slurUp #(first labanRight) } \\
+{\override NoteHead.color = cyan \override Slur.color = cyan \global\slurUp #(second labanRight) } \\
+{\override NoteHead.color = red \override Slur.color = red \global\slurUp #(third labanRight) } \\
+{\override NoteHead.color = green \override Slur.color = green \global\slurDown #(fourth labanRight) } \\
+ {\global\slurDown #(fifth labanRight) } >>
 
-%lhca = #(ly:music-deep-copy leftHand)
-%llhca = #(split-long-notes (my-transform-voice 'left 5 lhca ))
-%llha = #(merge-n-voices-chords llhca)
-%lhcb = #(ly:music-deep-copy leftHand)
-%llhcb = #(split-long-notes (my-transform-voice 'left 1 lhcb ))
-%llhb = #(merge-n-voices-chords llhcb)
-
-%labRh = 
-%  \new Staff = "lab_lh"  \with {
-%      fontSize = #-2
-%      \override StaffSymbol.staff-space = #(magstep -2)
-%      \override Stem.stencil = ##f
-%      \override Flag.stencil = ##f
-%      \override BarLine.stencil = ##f
-%      \override SpanBar.stencil = ##f
-%      \override TimeSignature.stencil = ##f
-%      \override Dots.stencil = ##f
-%      \override TupletBracket.stencil = ##f
-%      \override TupletNumber.stencil = ##f
-%%%      % This staff will NOT appear in MIDI
-%%      %\consists "Staff_performer"
- %     \remove "Staff_performer"
- %     \consists #(make-performer)
- %     \autoBeamOff
-%\override Staff.displayHand = #'left
-%    }
-%<<
-%    \new Voice = "lablh" <<
-% {\global\slurUp \llhb } \\ {\global\slurDown \llha }
-%>>
-%>>
 
 etude-one-music = {
   \new PianoStaff <<

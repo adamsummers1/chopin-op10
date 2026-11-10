@@ -9,23 +9,22 @@ ekmFont = "Mezza#"
 
 \include "dev-tools.ly"
 \include "laban-tools.ly"
-%\include "laban-voice-merge.ly"
 #(load-from-path "laban-processing.scm")
 #(load-from-path "laban-build.scm")
 #(load-from-path "click-track-tools.scm")
-#(define (note-with-fingering? m)
-   (and (music-is-of-type? m 'note-event)
-        (let ((arts (ly:music-property m 'articulations)))
-          (and arts
-               (any
-                (lambda (a)
-                  (music-is-of-type? a 'fingering-event))
-                arts)))))
+%#(define (note-with-fingering? m)
+%   (and (music-is-of-type? m 'note-event)
+%        (let ((arts (ly:music-property m 'articulations)))
+%          (and arts
+%               (any
+%                (lambda (a)
+%                  (music-is-of-type? a 'fingering-event))
+%                arts)))))
 
-#(define (context-specifying-hand? m)
-    (and (music-is-of-type? m 'context-specification) 
-          (music-is-of-type? (ly:music-property m 'element) 'layout-instruction-event)
-          (eq? (ly:music-property (ly:music-property m 'element) 'symbol) 'hand)))
+%#(define (context-specifying-hand? m)
+%    (and (music-is-of-type? m 'context-specification) 
+%          (music-is-of-type? (ly:music-property m 'element) 'layout-instruction-event)
+%          (eq? (ly:music-property (ly:music-property m 'element) 'symbol) 'hand)))
 
 \paper {
   %  max-systems-per-page = #4
@@ -51,17 +50,18 @@ rightHand = {
   \tupletSpan 4
   \omit TupletNumber
   \omit TupletBracket
+  \omit CaesuraScript
   \tuplet 3/2 {
   \set Staff.hand = #'right
     <a' c''>8-. <g'-1 d''-5>-. <f'-1 dis''-5>-.
     <e'-1 e''-5>-. \caesura
     <c'' fis''>-. <b'-1 gis''>-.
-    <a'-1 a''-5>-. <f'' b''>-. <e''-1 c'''-5>-.
+    <a'-1 a''-5>-. \caesura  <f'' b''>-. <e''-1 c'''-5>-.
     <d''-1 d'''-5>-. <a'' e'''>-. <gis''-1 f'''-5>-.
     |
     <a''-1 e'''>-. \ottava #1 <e''' c''''-5>-. <d'''-1 b'''>-.
     <c'''-1 a'''>-. \ottava #0 <a'' c'''>-. <gis''-1 f'''-5>-.
-    <a'' e'''>-. <e''-1 a''>-. <gis'' d'''-5>-.
+    <a'' e'''>-. \caesura <e''-1 a''>-. <gis'' d'''-5>-.
     <a''-1 c'''>-. <c''-1 e''>-. <dis'' fis''>-.
     |
     <e''-1 gis''>-. <dis'' a''>-. <d''-1 b''-5>-.
@@ -267,7 +267,7 @@ lh_a = {
 \voiceThree
   \clef "bass"\global
   a16-1 ais b c'-1 cis' d'-1 dis' e' \clef "treble" f'-1 fis' g'-1 gis' a'-1 ais' b' c''-1| % bar 1
-  cis'' d''-1 dis'' e'' f''-1 e'' dis'' d''-1 cis'' c''-1 b' bes' a'-1 gis' b'-1 a'| % bar 2
+  cis'' d''-1 dis'' e'' f''-1 e'' dis'' d''-1 cis'' c''-1 b' bes' a'-1 gis' b'-2 a'-1| % bar 2
   gis' g' fis' f' e' dis' f' e' \clef "bass" dis' d' cis' c' b c' d' c'|
   b c' b c' b c' b c' b e' dis' d' cis' c' b bes|
   a16 ais b c' cis' d' dis' e' \clef "treble" f' fis' g' gis' a' ais' b' c''| % bar 5
@@ -329,6 +329,57 @@ lh_a = {
 }
 
 lh_b_a = {
+  \set Voice.hand = #'left
+  \clef "bass"
+   \time 4/4
+    \key a \minor
+    a,16-5 s8. < e-5 a >16 s8. < a-5 d' >16 s8. < d'-5 f' >16 s8. < e'-5 a' >16 s8. < a'-5 c'' >16 s8. < e'-5 a' >16 s8. < c'-5 e' >16 s8. < b-5 e' >16 s8.
+   gis4-5( a4) dis4( |
+  e4) f4( e4) s4 |
+    a,16 s8. < e a >16 s8. < a d' >16 s8. < d' f' >16 s8. < e' a' >16 s8. < a' c'' >16 s8. < e' a' >16 s8. < c' e' >16 s8. < b e' >16 s8. < e' g' >16 s8.
+   dis'4 b4  e16 s8. b4 c'4 e4 |
+    a,16 s8. < e a >16 s8. < a d' >16 s8. < d' f' >16 s8. < e' a' >16 s8. < a' c'' >16 s8. < e' a' >16 s8. < c' e' >16 s8. < b e' >16 s8.
+   gis4( a4) dis4( |
+  e4) f4( e4) s4 |
+    a,16 s8. < e a >16 s8. < a d' >16 s8. < d' f' >16 s8. < e' a' >16 s8. < a' c'' >16 s8. < e' a' >16 s8. a16 s8. < d' f' >16 s8.
+   bes'4  e'16 s8.  e''4 |
+    < c'' e'' >16 s8. < a' c'' >16 s8. < e' a' >16 s8. < c' e' >16 s8. < d bes >16 s8. < f bes >16 s8.
+   e4 e4 |
+   a,16 s8. < e a >16 s8. < a c' >16 s8.  s4 |
+   < c e >16 s8. < e bes >16 s8. < f a >16 s8.  c'4 |
+   < c e >16 s8. < e bes >16 s8. < f aes >16 s8.  des'4 |
+   < d fis >16 s8. < fis c' >16 s8. < g bes >16 s8.  d'4 |
+   < d fis >16 s8. < fis c' >16 s8. < g bes >16 s8.  ees'4 |
+   < e gis >16 s8. < gis d' >16 s8. < a c' >16 s8.  e'4 |
+   < e gis >16 s8. < gis d' >16 s8. < a c' >16 s8.  < g' a' >4 |
+   < f' a' >16 s8.  < f' a' >4 < d' f' >4  < e gis d' >16 s8.  |
+  < g' bes' >4 < ees' g' >4 < c' ees' >4  < d fis c' >16 s8.  |
+  
+    < g' bes' >16 s8. < cis' g' >16 s8. < d a >16 s8. < a f' >16 s8. < f' a' >16 s8. < b f' >16 s8. < c g >16 s8. < g ees' >16 s8. < ees' g' >16 s8. < bes ees' >16 s8. < g bes >16 s8. < cis g >16 s8. < d, a, >16 s8. < cis g >16 s8. < d, a, >16 s8. < cis g >16 s8. < d, a, >16 s8. < dis a >16 s8. < e, b, >16 s8. < d a >16 s8.
+   |
+  < e, b, >4 
+    < gis' b' >16 s8. < e' a' >16 s8. < c' e' >16 s8. < e b >16 s8. < f' a' >16 s8. < d' f' >16 s8. < b d' >16 s8. < e c' >16 s8. < e' g' >16 s8. < c' e' >16 s8. < a c' >16 s8. < f a >16 s8. < d f >16 s8. < e, b, >16 s8.
+   s4 |
+  a4 a4 a4 f'8( d'8 |
+  a'4) c''8( b'8 a'8 e'8 c'8 dis'8 |
+  e'4) g8( gis8 a4) d8( dis8 |
+  e4) g8( f8 e2) |
+  a4 a4 c'8( a8 f'8 d'8 |
+  a'4) c''8( b'8 a'8 e'8 c'8 dis'8 |
+  e'4) b4( cis'4 dis'4 |
+  e'4) b4( a4 g4) |
+  a4 a4 a4 f'8( d'8 |
+  a'4) c''8( b'8 a'8 e'8 c'8 dis'8 |
+  e'4) g8( gis8 a4) d8( dis8 |
+  e4) g8( f8 e2) |
+  a4 a4 c'8( a8 f'8 d'8 |
+  a'4) c''8( b'8 a'8 e'8 c'8 cis'8 |
+  d'4) bes'8( a'8 gis'4) e''8( d''8 |
+  c''8 e''8 a'8 c''8 e'8 a'8 c'8 e'8) |
+ 
+}
+
+xlh_b_a = {
   \set Staff.hand = #'left
   \clef "bass" \global
   \multiRhythm {
@@ -399,6 +450,17 @@ lh_b_a = {
 }
 
 lh_b_b = {
+  \set Voice.hand = #'left
+  s1 |
+  
+    < a, a >16 s8. < f a >16 s8. < a d' >16 s8. < d' f' >16 s8. < a c' >16 s8.
+   s2. |
+   < a' c'' a'' >16 s8.  
+    < a' d'' >16 s8. < f' a' >16 s8. < d' f' >16 s8. < a d' >16 s8. < f a >16 s8. < d f >16 s8. < a, d >16 s8.
+  
+}
+
+xlh_b_b = {
       s1 |
       \multiRhythm {
         <a, a> <f a> <a d'> <d' f'> 
@@ -410,7 +472,9 @@ lh_b_b = {
 %\multiRhythm { <a' d''> <f' a'> <d' f'> <a d'> <f a> <d f> <a, d> }
 }
 
-lh_c = { \skip { \lh_b_a }
+lh_c = { 
+\set Voice.hand = #'left 
+\skip { \lh_b_a }
       \stemDown\slurDown d8 ( f bes a a e fis gis |
       a16 ) s8. s2. | s4 a'8 ( g' f' d'' f'' e'' |
       a''16 ) s8.
@@ -422,6 +486,8 @@ lh_all =  << {\lh_a } \\ {\lh_b_a \lh_b_b } \\ {\lh_c }>>
 
 %#(write-display-lily-music rightHand "tmp-rightHand.ly") #(write-display-music rightHand "tmp-rightHand.scm")
 
+%#(write-display-lily-music lh_b_a "tmp-lh_b_a.ly")
+%#(write-display-lily-music lh_b_b "tmp-lh_b_b.ly")
 lrhu_a = #(my-transform-voice 'right 5 (ly:music-deep-copy rightHand))
 #(write-display-music lrhu_a "tmp-lrhu_a.scm")
 lrhu_b = #(flatten-sequential lrhu_a)
@@ -468,7 +534,7 @@ displayHand = #'right
 >>
 
 
-labanLeft = #(build-laban-hand 'left (list 5 1) (list lh_all))
+labanLeft = #(build-laban-hand 'left (list 5 1) (list lh_a lh_b_a lh_b_b lh_c))
 
 labLh = 
   \new Staff = "lab_lh"  \with {
@@ -492,7 +558,7 @@ displayHand = #'left
     }
 << \new Voice = "lablhU" << {\global\clef "bass"\slurDown #(car labanLeft) } \\ {\global\slurUp #(cadr labanLeft) } >> >>
 
-#(write-display-music labanLeft "tmp-labanLeft.scm")
+%#(write-display-music labanLeft "tmp-labanLeft.scm")
 
 etude-four-music = {
   \new PianoStaff = "piano" <<
