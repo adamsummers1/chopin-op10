@@ -32,46 +32,36 @@ rightHand = {
   d''''16-5 g'''-3 f'''-2 b''-1  \ottava 0 d'''-5 g''-3 f''-2 b'-1  d''-5 g'-3 f'-2 b-1  \change Staff="lower" \stemUp dis'^> g-5 f-3 b,-2 | 
     
   \barNumberCheck 9
-  r16 c-1 g-2 c'-4  \change Staff="upper" \stemNeutral e'-5 c'-1 g'-2 c''-4  e''-5 c''-1 g''-2 c'''-4  \ottava 1 e'''-5 c'''-1 g'''-2 c''''-4 |
+  \caesura r16 c-1 g-2 c'-4  \change Staff="upper" \stemNeutral e'-5 c'-1 g'-2 c''-4  e''-5 c''-1 g''-2 c'''-4  \ottava 1 e'''-5 c'''-1 g'''-2 c''''-4 |
   e''''16-5 c''''-4 g'''-2 c'''-1  \ottava 0 e'''-5 c'''-4 g''-2 c''-1  e''-5 c''-4 g'-2 c'-1  e'-5 c'-4 \change Staff="lower" g-2 c-1 |
-  \stemUp r16 c-1 f-2 c'-4  \change Staff="upper" \stemNeutral f'-5 c'-1 f'-2 c''-4  f''-5 c''-1 f''-2 c'''-4 \ottava 1 f'''-5 c'''-1 f'''-2 c''''-4 |
+  \caesura \stemUp r16 c-1 f-2 c'-4  \change Staff="upper" \stemNeutral f'-5 c'-1 f'-2 c''-4  f''-5 c''-1 f''-2 c'''-4 \ottava 1 f'''-5 c'''-1 f'''-2 c''''-4 |
   e''''16-5 c''''-4 fis'''-2 c'''-1  \ottava 0 e'''-5 c'''-4 fis''-2 c''-1  e''-5 c''-4 fis'-2 c'-1  e'-5 c'-4 \change Staff="lower" fis-2 c-1 |
-  \stemUp r16 c-1 g-2 c'-4  \change Staff="upper" \stemNeutral d'-5 c'-1 g'-2 c''-4  d''-5 c''-1 g''-2 c'''-4 \ottava 1 d'''-5 c'''-1 g'''-2 c''''-4 |
+  \caesura \stemUp r16 c-1 g-2 c'-4  \change Staff="upper" \stemNeutral d'-5 c'-1 g'-2 c''-4  d''-5 c''-1 g''-2 c'''-4 \ottava 1 d'''-5 c'''-1 g'''-2 c''''-4 |
   d''''16-5 b'''-4 g'''-2 b''-1  \ottava 0 d'''-5 b''-4 g''-2 b'-1  d''-5 b'-4 g'-2 b-1  d'-5 b-4 \change Staff="lower" g-2 b,-1 |
-  \stemUp r16 d-1 g-2 d'-4  \change Staff="upper" \stemNeutral e'-5 d'-1 g'-2 d''-4  e''-5 d''-1 g''-2 d'''-4 \ottava 1 e'''-5 d'''-1 g'''-2 d''''-4 |
+  \caesura \stemUp r16 d-1 g-2 d'-4  \change Staff="upper" \stemNeutral e'-5 d'-1 g'-2 d''-4  e''-5 d''-1 g''-2 d'''-4 \ottava 1 e'''-5 d'''-1 g'''-2 d''''-4 |
   e''''16-5 c''''-4 g'''-2 c'''-1  \ottava 0 e'''-5 c'''-4 g''-2 c''-1  e''-5 c''-4 g'-2 c'-1  e'-5 c'-4 \change Staff="lower" g-2 c-1 |
-  
   \barNumberCheck 17
-  \stemUp r16 e-1 c'-2 e'-4  \change Staff="upper" \stemNeutral f'-5 e'-1 c''-2 e''-4  f''-5 e''-1 c'''-2 e'''-4 \ottava 1 f'''-5 e'''-1 c''''-2 e''''-4 |
+  \caesura \stemUp r16 e-1 c'-2 e'-4  \change Staff="upper" \stemNeutral f'-5 e'-1 c''-2 e''-4  f''-5 e''-1 c'''-2 e'''-4 \ottava 1 f'''-5 e'''-1 c''''-2 e''''-4 |
   f''''16-5 d''''-4 b'''-2 d'''-1  \ottava 0 f'''-5 d'''-4 b''-2 d''-1  f''-5 d''-4 b'-2 d'-1  f'-5 d'-4 b-2 \change Staff="lower" d-1 |
-  \stemUp r16 d-1 b-2 d'-4  \change Staff="upper" \stemNeutral e'-5 d'-1 b'-2 d''-4  e''-5 d''-1 b''-2 d'''-4 \ottava 1 e'''-5 d'''-1 b'''-2 d''''-4 |
+  \caesura \stemUp r16 d-1 b-2 d'-4  \change Staff="upper" \stemNeutral e'-5 d'-1 b'-2 d''-4  e''-5 d''-1 b''-2 d'''-4 \ottava 1 e'''-5 d'''-1 b'''-2 d''''-4 |
   e''''16-5 c''''-4 a'''-2 c'''-1  \ottava 0 e'''-5 c'''-4 a''-2 c''-1 e''-5 c''-4 a'-2 c'-1  e'-5 c'-4 \change Staff="lower" a-2 c-1 |
-  \stemUp r16 c-1 a-2 c'-4  \change Staff="upper" \stemNeutral e'-5 c'-1 a'-2 c''-4  e''-5 c''-1 a''-2 c'''-4 \ottava 1 e'''-5 c'''-1 a'''-2 c''''-4 |
+  \caesura \stemUp r16 c-1 a-2 c'-4  \change Staff="upper" \stemNeutral e'-5 c'-1 a'-2 c''-4  e''-5 c''-1 a''-2 c'''-4 \ottava 1 e'''-5 c'''-1 a'''-2 c''''-4 |
   dis''''16-5 b'''-3 a'''-2 b''-1  \ottava 0 dis'''-5 b''-3 a''-2 b'-1  dis''-5 b'-3 a'-2 b-1 \change Staff="lower" \stemUp dis'-5 b-3 a-2 b,-1 |
-  \stemUp r16 b,16-1 a-2 b-3  \change Staff="upper" \stemNeutral e'-5 b-1 a'-2 b'-3  e''-5 b'-1 a''-2 b''-3  \ottava 1 e'''-5 b''-1 a'''-2 b'''-3 |
+  \caesura \stemUp r16 b,16-1 a-2 b-3  \change Staff="upper" \stemNeutral e'-5 b-1 a'-2 b'-3  e''-5 b'-1 a''-2 b''-3  \ottava 1 e'''-5 b''-1 a'''-2 b'''-3 |
   e''''16-5 b'''-3 gis'''-2 b''-1  \ottava 0 e'''-5 b''-3 gis''-2 b'-1  e''-5 b'-3 gis'-2 b-1  e'-5 b-3 \change Staff="lower" gis-2 b,-1 |
-    
   \barNumberCheck 25
-  \stemUp r16 e-1 a-2 cis'-3  \change Staff="upper" \stemNeutral g'-5 e' a' cis''  g'' e'' a'' cis'''  g''' cis''' a'' e'' |
-  g'''16-5 c'''-3 a''-2 e''-1  g'' c'' a' e'  g' c' \change Staff="lower" a e \change Staff="upper" fis' c' \change Staff="lower" a d \stemUp r16 d-1 g-2 c'-3  \change Staff="upper" \stemNeutral f'-5 d'-1 g'-2 c''-4  f''-5 d'' g'' c''' 
-    \ottava 1 f''' d''' g''' c'''' |
-  f''''16-5 b'''-3 g'''-2 d'''-1  \ottava 0 f'''-5 b'' g'' d''  f'' b' g' d'  
-    \change Staff="lower" \stemUp f' b g d |
-  r16 c-1 g-2 bes-3  \change Staff="upper" \stemNeutral e'-5 c'-1 g'-2 bes'-3  e''-5 c'' g'' bes''  
-    \ottava 1 e''' c''' g''' c'''' |
-  es''''-1 bes'''-4 es'''-2 c'''-1  \ottava 0 es'''-5 bes'' es'' c''  es'' bes' es' c'
-    es' bes \change Staff="lower" es c |
-  \stemUp r16 c-1 es-2 a-4  \change Staff="upper" \stemNeutral es'-5 c' es' a'  es'' c'' es'' a''
-    \ottava 1 es''' c''' es''' a''' |
-  es''''-5 as'''-3 es'''-2 ces'''-1  \ottava 0 es'''-5 as'' es'' ces''  es'' as' es' ces'
-    \change Staff="lower" \stemUp es' as es ces |
-    
+  \caesura \stemUp r16 e-1 a-2 cis'-3  \change Staff="upper" \stemNeutral g'-5 e'-1 a'-2 cis''-3  g''-5 e''-1 a''-2 cis'''-3  g'''-5 cis'''-3 a''-2 e''-1 |
+  g'''16-5 c'''-3 a''-2 e''-1  g''-5 c''-3 a'-2 e'-1  g'-5 c'-3 \change Staff="lower" a-2 e-1 \change Staff="upper" fis'-5 c'-3 \change Staff="lower" a-2 d-1 | % bar 26
+  \caesura \stemUp r16 d-1 g-2 c'-4  \change Staff="upper" \stemNeutral f'-5 d'-1 g'-2 c''-4  f''-5 d''-1 g''-2 c'''-4 \ottava 1 f'''-5 d'''-1 g'''-2 c''''-4 | % bar 27
+  f''''16-5 b'''-3 g'''-2 d'''-1  \ottava 0 f'''-5 b''-3 g''-2 d''-1  f''-5 b'-3 g'-2 d'-1  \change Staff="lower" \stemUp f'-5 b-3 g-2 d-1 | % bar 28
+  \caesura r16 c-1 g-2 bes-3  \change Staff="upper" \stemNeutral e'-5 c'-1 g'-2 bes'-3  e''-5 c''-1 g''-2 bes''-3  \ottava 1 e'''-5 c'''-1 g'''-2 c''''-3 | % bar 29
+  es''''-5 bes'''-3 es'''-2 c'''-1  \ottava 0 es'''-5 bes''-3 es''-2 c''-1  es''-5 bes'-3 es'-2 c'-1 es'-5 bes-3 \change Staff="lower" es-2 c-1 | % bar 30
+  \caesura \stemUp r16 c-1 es-2 a-4  \change Staff="upper" \stemNeutral es'-5 c'-1 es'-2 a'-4  es''-5 c''-1 es''-2 a''-4 \ottava 1 es'''-5 c'''-1 es'''-2 a'''-4 | % bar 31
+  es''''-5 as'''-3 es'''-2 ces'''-1  \ottava 0 es'''-5 as''-3 es''-2 ces''-1  es''-5 as'-3 es'-2 ces'-1 \change Staff="lower" \stemUp es'-5 as-3 es-2 ces-1 | % bar 32
   \barNumberCheck 33
-  r16 bes,-1 f-2 as-3  \change Staff="upper" \stemNeutral d'-5 bes-1 f' as'  d'' bes' f'' as''
-    \ottava 1 d''' bes'' f''' as'''
-  d''''16-5 gis'''-3 e'''-2 bes''-1  \ottava 0 d'''-5 gis'' e'' bes'  d'' gis' e' bes
-    \change Staff="lower" \stemUp d' gis e bes, |
-  r16 a,-1 e-2 a-4  \change Staff="upper" \stemNeutral cis'-5 a e' a'  cis'' a' e'' a''  
+  \caesura r16 bes,-1 f-2 as-3  \change Staff="upper" \stemNeutral d'-5 bes-1 f'-2 as'-3  d''-5 bes'-1 f''-2 as''-3 \ottava 1 d'''-5 bes''-1 f'''-2 as'''-3 | % bar 33
+  d''''16-5 gis'''-3 e'''-2 bes''-1  \ottava 0 d'''-5 gis''-3 e''-2 bes'-1  d''-5 gis'-3 e'-2 bes-1 \change Staff="lower" \stemUp d'-5 gis-3 e-2 bes,-1 | % bar 34
+  \caesura r16 a,-1 e-2 a-4  \change Staff="upper" \stemNeutral cis'-5 a e' a'  cis'' a' e'' a''  
     \ottava 1 cis''' a'' e''' a''' |
   cis''''16 a''' e''' a''  \ottava 0 cis''' a'' e'' a'  cis'' a' e' a  \change Staff="lower" \stemUp cis' a e a, |
   r16 a,-1 d-2 fis-3  \change Staff="upper" \stemNeutral c'-5 a d' fis'  c'' a' d'' fis''  c''' a'' d''' fis''' |
@@ -397,8 +387,6 @@ etude-one-header = \header {
 
 labanRight = #(build-laban-hand 'right (list 5 4 3 2 1) (list rightHand))
 
-#(write-display-lily-music labanRight "tmp-labanRight.ly")
-#(write-display-music labanRight "tmp-labanRight.scm")
 labRh = 
   \new Staff = "lab_rh"  \with {
 %      %instrumentName = "lab_RH"

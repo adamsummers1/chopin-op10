@@ -13,7 +13,10 @@ ekmFont = "Mezza#"
 \pageBreak
 
   \score {
+  <<
+    \labRh
     \etude-two-music
+  >>
 
     \layout {
       \context {

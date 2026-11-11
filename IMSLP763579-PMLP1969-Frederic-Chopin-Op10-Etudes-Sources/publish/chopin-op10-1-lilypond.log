@@ -1,7 +1,9 @@
-GNU LilyPond 2.27.4 (running Guile 3.0)
+GNU LilyPond 2.27.2 (running Guile 3.0)
 Changing working directory to: `./publish'
-Processing `/home/adams/devstuff/repos/Chopin-Etudes/IMSLP763579-PMLP1969-Frederic-Chopin-Op10-Etudes-Sources/chopin-op10-1.ly'
+Processing `/home/adams/devstuff/repo/Chopin-Etudes/IMSLP763579-PMLP1969-Frederic-Chopin-Op10-Etudes-Sources/chopin-op10-1.ly'
 Parsing...
+error: program too old: 2.27.2 (file requires: 2.27.4)
+error: program too old: 2.27.2 (file requires: 2.27.4)
 Interpreting music...
 warning: the property 'hand' does not exist (perhaps a typing error)
 warning: the property 'hand' does not exist (perhaps a typing error)
@@ -14,12 +16,12 @@ MIDI output to `chopin-op10-1.midi'...
 Finding the ideal number of pages...
 Fitting music on 8 or 9 pages...
 Drawing systems...
-warning: compressing over-full page by 1.5 staff-spaces
+warning: compressing over-full page by 2.3 staff-spaces
 warning: page 3 has been compressed
 warning: compressing over-full page by 4.4 staff-spaces
 warning: page 7 has been compressed
-/home/adams/devstuff/repos/Chopin-Etudes/IMSLP763579-PMLP1969-Frederic-Chopin-Op10-Etudes-Sources/chopin-op10-1-piano.ly:141:5: warning: no viable initial configuration found: may not find good beam slope
+/home/adams/devstuff/repo/Chopin-Etudes/IMSLP763579-PMLP1969-Frederic-Chopin-Op10-Etudes-Sources/chopin-op10-1-piano.ly:114:5: warning: no viable initial configuration found: may not find good beam slope
     
     dis'->-5 b-3 \change Staff="lower" a b, |
 Converting to `chopin-op10-1.pdf'...
-Success: compilation successfully completed
+fatal error: failed files: "chopin-op10-1.ly"

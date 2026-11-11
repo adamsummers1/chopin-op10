@@ -1,24 +1,12 @@
-\version "2.27.2"
+\version "2.27.4"
 \language "nederlands"
 \include "dev-tools.ly"
-\include "laban-tools.ly"
-\include "laban-voice-merge.ly"
-\include "color-voices.ily"
-#(load-from-path "laban-build.scm")
+%\include "color-voices.ily"
+#(load-from-path "laban-processing.scm")
 
 #(load-from-path "click-track-tools.scm")
 
-sempreLegato = \markup \larger \italic "sempre legato"
-
-tweakFingerA = 
-  \tweak X-offset -1.5
-  \tweak Y-offset -3.5
-  \etc
-
-tweakFingerB = 
-  \tweak X-offset -1.5
-  \tweak Y-offset -4.75
-  \etc
+sempreLegato = \markup{\italic "sempre legato"}
 
 global = {
   \time 4/4
@@ -28,6 +16,7 @@ global = {
 
 rightHandUpper = {
   \voiceOne
+  \set Voice.hand = #'right
   \global
   \tempo "Allegro" 4 = 144
   
@@ -82,7 +71,7 @@ rightHandUpper = {
   fis'16-3 g'-4 gis'-3 a'-4  bes'-5 a'-4 gis'-3 g'-4  fis'-3 g'-4 gis'-3 a'-4
     bes'-5 a'-4 gis'-3 g'-4 |
   fis'16-3 g'-4 gis'-3 a'-4  c''-5 b'-4 bes'-3 a'-4  gis'-3 a'-4 ais'-3 b'-4  c''-5 b'-4 bes'-3 a'-4 |
-  gis'8-3 b'\rest  e'''16-4 f'''-5 d'''-4 e'''-5  c'''-4 d'''-5 b''-4 c'''-5  a''-4 b''-5 g''-4 a''-5 |
+  gis'8-3 \caesura b'\rest e'''16-4 f'''-5 d'''-4 e'''-5  c'''-4 d'''-5 b''-4 c'''-5  a''-4 b''-5 g''-4 a''-5 |
   
   \barNumberCheck 33
   f''16-4 g''-5 e''-3 f''-1_( 
@@ -134,11 +123,11 @@ rightHandUpper = {
 
 rightHandLower = {
   \voiceTwo
-  <c' e'>16 \tweakFingerA -2 \tweakFingerB -1 s8. 
-    <e' a'>16 \tweakFingerA -2 \tweakFingerB -1 s8. <a' d''>16 s8. <d'' f''>16 s8. |
-  <e'' a''>16 s8. <a'' c'''>16 s8. <e'' a''>16 s8. <c'' e''>16 s8. |
-  <b' e''>16 s8. <gis' b'>16 s8. <a' c''>16 s8. <e' a'>16 s8. |
-  <e' gis'>16 s8. <dis' a'>16 s8. <e' gis'>16 s8. <d' gis'>16 s8. |
+  \set Voice.hand = #'right
+  <c'-1 e'-2>16 s8.  <e'-1 a'-2>16 s8. <a'-1 d''-2>16 s8. <d''-1 f''-2>16 s8. | % bar 1
+  <e''-1 a''-2>16 s8. <a''-1 c'''-2>16 s8. <e''-1 a''-2>16 s8. <c''-1 e''-2>16 s8. | % bar 2
+  <b'-1 e''-2>16 s8. <gis'-1 b'-2>16 s8. <a'-1 c''-2>16 s8. <e'-1 a'-2>16 s8. | % bar 3
+  <e'-1 gis'-2>16 s8. <dis'-1 a'-2>16 s8. <e' gis'>16 s8. <d' gis'>16 s8. |
   <c' e'>16 s8. <e' a'>16 s8. <a' d''>16 s8. <d'' f''>16 s8. |
   <e'' a''>16 s8. <a'' c'''>16 s8. <e'' a''>16 s8. <c'' e''>16 s8. |
   <b' e''>16 s8. <e'' g''>16 s8. <dis'' fis''>16 s8. <a' d''>16 s8. |
@@ -203,7 +192,8 @@ rightHand = {
 }
 
 leftHand = {
-  \voiceThree
+  %\voiceThree
+  \set Voice.hand = #'left
   \global
   \clef bass
   
@@ -351,6 +341,34 @@ etude-two-header = \header {
   opus = "Opus 10 No 2"
   tagline = \date 
 }
+
+labanRight = #(build-laban-hand 'right (list 5 4 3 2 1) (list rightHand))
+
+labRh = 
+  \new Staff = "lab_rh"  \with {
+%      %instrumentName = "lab_RH"
+      fontSize = #-2
+      \override StaffSymbol.staff-space = #(magstep -2)
+      \override Stem.stencil = ##f
+      \override Flag.stencil = ##f
+      \override BarLine.stencil = ##f
+      \override SpanBar.stencil = ##f
+      \override TimeSignature.stencil = ##f
+      \override Dots.stencil = ##f
+      \override TupletBracket.stencil = ##f
+      \override TupletNumber.stencil = ##f
+%      % This staff will NOT appear in MIDI
+%      %\consists "Staff_performer"
+      \remove "Staff_performer"
+      \consists #(make-performer)
+      \autoBeamOff
+\override Staff.displayHand = #'right
+    }
+<< {\global\slurUp #(first labanRight) } \\
+{\override NoteHead.color = cyan \override Slur.color = cyan \global\slurUp #(second labanRight) } \\
+{\override NoteHead.color = red \override Slur.color = red \global\slurUp #(third labanRight) } \\
+{\override NoteHead.color = green \override Slur.color = green \global\slurDown #(fourth labanRight) } \\
+ {\global\slurDown #(fifth labanRight) } >>
 
 etude-two-music = {
   \new PianoStaff <<
