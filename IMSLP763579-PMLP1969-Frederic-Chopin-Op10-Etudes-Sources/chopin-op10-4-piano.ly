@@ -1,6 +1,4 @@
-%...+....1....+....2....+....3....+....4....+....5....+....6....+....7....+....
-
-\version "2.27.3"
+\version "2.27.4"
 \language "nederlands"
 \include "dev-tools.ly"
 #(load-from-path "laban-build.scm")
@@ -13,18 +11,37 @@ global = {
   \accidentalStyle piano
 }
 
-rightHandUpper = {
-  \partial 4 gis''16 fis'' e'' dis''
+rightHand = {
   \oneVoice
-  <cis'' cis'''>16-^ dis''( bis' cis''  dis'' e'' cis'' dis''  e'' fis'' dis'' e''  fis'' gis'' e'' fis'' |
-  gis''16 a'' gis'' cis'''  fis'' gis'' fis'' cis'''  e'' fis'' e'' cis'''  dis'' e'' dis'' cis''') |
-  \voiceOne s16 gis''8 s16 s fis''8 s16 s e''8 s16 s dis''8 s16 |
-  \oneVoice <cis'' cis'''>8^^ a'16[( a'']) gis'[( gis'']) fisis'[( fisis'']) 
-    gis'[( gis'']) cis'[( cis'']) <cis' dis' fisis' ais' dis''>4->
-  <b dis' gis' b'>8-. r <cis' dis' fisis'>-. r <b dis' gis'>-. r <cis' e' gis'>-. r |
-  <b dis' gis'>8-. r <cis' e' gis'>-. r <dis' gis'>-. r <cis' dis' ais'>-. r |
-  <b dis' gis' b'>8 r <dis'' ais'' dis'''>4_~ <dis'' gis'' b''>8 r <dis' ais' dis''>4->~ |
-  <dis' gis' b'>8 \voiceOne e'16([ fisis'] dis'[ gis'] g'[ ais'] fis'[ b'] a'[ bis'] gis'[ cis''] 
+  \global
+  \set fingeringOrientations = #'(up)
+  \set Staff.hand = #'right  % staff, not voice
+  \tempo "Presto" 2 = 88
+  \stemNeutral
+  \partial 4 
+  <<
+      { 
+        \set fingeringOrientations = #'(up)
+        gis''16-5_( fis''-4 e''-3 dis''-2 |
+        \stemNeutral
+        <cis''-1 cis'''-5>16-)-( dis''-3 bis'-1 cis''-2 dis''-3 e''-4 cis''-1 dis''-2  e''-3 fis''-4 dis''-1 e''  fis'' gis''-4 e''-1 fis'' |
+        gis''16-3 a''-4 gis''-2 cis'''-5  fis''->-1 gis''-3 fis''-2 cis'''  e''->-1 fis''-3 e''-2 cis'''  dis''->-1 e''-2 dis''-1 cis'''-) |
+        \stemUp
+        s16 gis''8 s16 s fis''8 s16 s e''8 s16 s dis''8 s16 |
+      }
+      \\
+      { 
+        \set fingeringOrientations = #'(up)
+        gis'4  |
+        s1 * 2 |
+        cis''16->-1-( gis''-2 e'''-5 a''-3-)  bis'->-1-( fis''-2 dis'''-5 gis''-3-)  gis'->-( e'' cis''' fis''-3-) gis'->-( dis'' bis'' e''-2-) |
+      }
+>>
+  <cis'' cis'''>8-.-\noBeam a'16-1-( a''-5-) gis'-[-( gis''-4-]-)fisis'-[-( fisis''-]-5-) gis'-[-( gis''-]-4-) cis'-[-( cis''-]-4-) <cis' dis' fisis' ais' dis''>4->-( | % bar 4
+  <b dis' gis' b'>8-.-) r <cis'-2 dis'-3 fisis'-5>-. r <b -1 dis'-3 gis'-5>-. r <cis'-2 e'-4 gis'-5>-. r | % bar 5
+  <b dis' gis'>8-. r <cis'-2 e'-4 gis'-5>-. r <dis' gis'-4>-. r <cis' dis' ais'-5>-. r | % bar 6
+  <b dis' gis' b'-5>8 r <dis''-1 ais''-3 dis'''-5>4_~^( <dis'' gis''-2 b''-4>8-) r <dis' ais' dis''>4->~^( |
+  <dis' gis' b'>8-) e'16([ fisis'] dis'[ gis'] g'[ ais'] fis'[ b'] a'[ bis'] gis'[ cis''] 
     bis'[ dis'']) |
   
   \barNumberCheck 9
@@ -134,10 +151,9 @@ rightHandUpper = {
 }
 
 rightHandLower = {
-  \partial 4 gis'4
-  s1 * 2 |
-  cis''16^>^( gis'' e''' a'')  bis'^>^( fis'' dis''' gis'')  \once \override Script.avoid-slur = #'inside gis'^>^( e'' cis''' fis'')  
-    \once \override Script.avoid-slur = #'inside gis'^>^( dis'' bis'' e'') |
+  \global
+  \partial 4 s4
+  s1 * 3 |
   s1 * 4 |
   s8 e' dis' g' fis' a' gis' bis' |
   
@@ -199,21 +215,14 @@ rightHandLower = {
   s1 * 2 |
 }
 
-rightHand = {
-  \global
-  \markLengthOn
-  \tempo "Presto" 2 = 88
-  << { \rightHandUpper } \\ { \rightHandLower } >>
-}
-
 leftHand = {
   \global
-  \clef bass
-  
-  \partial 4 <gis, gis>4
-  <cis, cis>8 r \clef treble <fis' a'>-. r <e' gis'>-. r <dis' fis'>-. r |
+  \clef "bass"
+  \set fingeringOrientations = #'(down)
+  \partial 4 <gis, gis>4 |
+  <cis, cis>8 r \clef "treble" <fis'-3 a'-1>-. r <e'-4 gis'-2>-. r <dis'-5 fis'-3>-. r | % bar 1
   <cis' e'>8-. r <a cis' fis'>-. r \clef bass <gis cis' e'>-. r <fis cis' dis'>-. r |
-  <cis gis e'>8-.\arpeggio r <gis, fis bis>-. r <cis e cis'>-. r <gis, gis>-. r |
+  <cis gis e'>8-.-\arpeggio r <gis, fis bis>-.-\arpeggio r <cis e cis'>-. r <gis, gis>-. r |
   <cis, cis>8 <a, a>[ <gis, gis> <fisis, fisis> <gis, gis> <cis, cis>]
     <dis, dis>16 cis\> b, ais,\! |
   gis,16 ais, fisis, gis,  ais, b, gis, fisis,  b, cis ais, b,  cis dis b, cis |
@@ -333,10 +342,8 @@ leftHand = {
 }
 
 dynamics = {
-  \override DynamicTextSpanner.style = #'none
-  \override TextScript.Y-offset = -0.5
-
-  \partial 4 s4-\markup { \dynamic f \italic "con fuoco" } s4\fp s\cresc s2 |
+  \partial 4 s4-\markup { \dynamic "f" \italic "con fuoco" } |
+  s4-\fp s2.-\cresc |
   s1 * 2 |
   s1\f |
   s1 * 3 |
@@ -370,14 +377,11 @@ dynamics = {
   s1 * 4 |
   
   \barNumberCheck 33
-  \override DynamicTextSpanner.style = #'none
   s2.\sf s4\cresc |
-  s2 \tag #'layout { s4\fp\> s8. s16\! }
-     \tag #'midi   { s2\f } |
+  s2  s4\fp\> s8. s16\!  |
   s4\f s8.\> s16\! s8.\> s16\! s8.\> s16\! |
   s8.\> s16\! s8.\> s16\! s8.\> s16\! s8.\> s16\! |
-  \tag #'layout { s1 }
-  \tag #'midi   { s4\sf s2.\f } |
+  s1 |
   s2 s4\f\> s8. s16\! |
   s4 s8.\> s16\! s8.\> s16\! s8.\> s16\! |
   s8.\> s16\! s8.\> s16\! s8.\> s16\! s8.\> s16\! |
@@ -394,8 +398,7 @@ dynamics = {
   \revert DynamicTextSpanner.style
   s2. s4\cresc |
   s2. s4\! |
-  \tag #'layout { s1 }
-  \tag #'midi   { s1\f } |
+  s1
   s1 * 2 |
   s2. s8.\f\> s16\! |
   s1\f |
@@ -432,16 +435,20 @@ dynamics = {
   s1 |
 }
 
+pedal = {
+  \partial 4 s4-\sustainOn |
+  s1-\sustainOff |
+  s1  | % bar 3 
+}
+
 etude-four-header = \header { }
 
-etude-four-music = {
-  \keepWithTag #'layout
-  \new PianoStaff <<
+etude-four-music = \new PianoStaff <<
     \new Staff = "upper" \rightHand
     \new Dynamics = "dynamics" \dynamics
     \new Staff = "lower" \leftHand
+    \new Dynamics = "pedal" \pedal
   >>
-}
 
 barcount = #(moment->whole-notes ((ly:music-property etude-four-music 'length-callback) etude-four-music))
 
@@ -450,7 +457,6 @@ myPartial = #(find-leading-partial etude-four-music)
 clickTrack = #(make-click-track-with-partial '( 4 . 4) barcount myPartial)
 
 etude-four-midi = {
-    \keepWithTag #'midi
     << 
       \new Staff = "upper" << \rightHand \dynamics >>
       \new Staff = "lower" << \leftHand \dynamics >>

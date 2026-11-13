@@ -9,8 +9,7 @@ ekmFont = "Mezza#"
 \include "chopin-op10-4-piano.ly"
 
 \etude-four-header
-
-%\pageBreak
+\pageBreak
 
   \score {
     \etude-four-music
